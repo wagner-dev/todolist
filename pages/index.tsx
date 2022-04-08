@@ -1,8 +1,5 @@
+import { Home } from '../presentation/pages/index'
 
-export default function Home() {
-  return (
-    <div>
-      
-    </div>
-  )
+export default function HomePage () {
+  return <Home />
 }
