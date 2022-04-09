@@ -1,3 +1,5 @@
+import fontSizes from './../font-sizes'
+
 const darkTheme = {
   colors: {
     primary: '#00B0FF',
@@ -6,7 +8,8 @@ const darkTheme = {
     title: '#e4e6eb',
     text: '#b0b3b8',
     background: '#18191a'
-  }
+  },
+  fontSizes
 }
 
 export default darkTheme

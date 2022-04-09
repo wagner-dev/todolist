@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
 export const Wrapped = styled.div`
-  width: 30%;
+  width: 50%;
+  height: 12%;
   display: flex;
   justify-content: space-around;
-  background: #606060;
+  background: ${({ theme: { colors: { secondary } } }) => secondary};
   border-radius: 8px;
   `
 export const Bar = styled.input`
@@ -14,7 +15,7 @@ export const Bar = styled.input`
   width: 100%;
   padding: 1rem;
   border: none;
-  font-size: .975rem;
+  font-size: ${({ theme: { fontSizes: { small } } }) => small};
   color: #fff;
 
   ::placeholder {
@@ -30,9 +31,9 @@ export const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`
 
-  svg{
-    width: 15px;
-    height: 15px;
-  }
+export const IconPlus = styled.div`
+  width: 15px;
+  height: 15px;
 `
