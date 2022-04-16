@@ -1,9 +1,13 @@
 import { FC } from 'react'
-import defaultTheme from '../themes/dark-theme'
 import { ThemeProvider } from 'styled-components'
+import { useTheme } from './theme-context'
 
-const Theme: FC = ({ children }) => (
-  <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
-)
+const ThemeComponent: FC = ({ children }) => {
+  const { theme } = useTheme()
 
-export default Theme
+  return (
+    <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  )
+}
+
+export default ThemeComponent

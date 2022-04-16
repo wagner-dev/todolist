@@ -1,6 +1,7 @@
+import { Theme } from '../protocols/theme'
 import fontSizes from './../font-sizes'
 
-const darkTheme = {
+const darkTheme: Theme = {
   colors: {
     primary: '#00B0FF',
     boldPrimary: '#003F5C',
