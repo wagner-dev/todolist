@@ -1,15 +1,15 @@
 import fontSizes from '../font-sizes'
 
-const darkTheme = {
+const lightTheme = {
   colors: {
     primary: '#00B0FF',
-    boldPrimary: '#003F5C',
-    secondary: '#3a3b3c',
-    title: '#e4e6eb',
-    text: '#b0b3b8',
-    background: '#1c75cd'
+    boldPrimary: '#262626',
+    secondary: '#ffffff',
+    title: '#000000',
+    text: '#242424',
+    background: '#e4e6eb'
   },
   fontSizes
 }
 
-export default darkTheme
+export default lightTheme

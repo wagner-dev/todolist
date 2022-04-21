@@ -3,11 +3,11 @@ import fontSizes from './../font-sizes'
 
 const darkTheme: Theme = {
   colors: {
-    primary: '#00B0FF',
-    boldPrimary: '#003F5C',
+    primary: '#ffffff',
+    boldPrimary: '#e4e6eb',
     secondary: '#3a3b3c',
     title: '#e4e6eb',
-    text: '#b0b3b8',
+    text: '#e4e6eb',
     background: '#18191a'
   },
   fontSizes

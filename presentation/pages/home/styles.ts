@@ -11,7 +11,7 @@ export const Wrapped = styled.main`
 export const Title = styled.div`
 
   h1{
-    color: #fff;
+    color: ${({ theme: { colors: { title } } }) => title};
     font-size: 3rem;
   }
 `

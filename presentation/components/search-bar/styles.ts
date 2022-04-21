@@ -16,7 +16,7 @@ export const Bar = styled.input`
   padding: 1rem;
   border: none;
   font-size: ${({ theme: { fontSizes: { small } } }) => small};
-  color: #fff;
+  color: ${({ theme: { colors: { text } } }) => text};
 
   ::placeholder {
     color: #a3a3a3;
@@ -26,7 +26,7 @@ export const Bar = styled.input`
 export const Button = styled.div`
   cursor: pointer;
   border-radius: 0px 8px 8px 0px;
-  background: #f1f1f1;
+  background: ${({ theme: { colors: { boldPrimary } } }) => boldPrimary};
   padding: 1rem;
   display: flex;
   justify-content: center;
