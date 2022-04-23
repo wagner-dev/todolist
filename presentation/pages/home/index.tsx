@@ -41,7 +41,7 @@ const Home: FC = () => {
   const ThrowError = (error: { message: string }) => {
     setError({ ...error, visible: true })
   }
-  console.log(error)
+
   return (
     <Wrapped>
       <Title>
