@@ -12,6 +12,12 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Roboto';
   }
+  span, p, textarea, h1, h2, h3, h4, h5, h6, input{
+    color: ${({ theme: { colors: { text } } }) => text}
+  }
+  img{
+    user-select: none;
+  }
 `
 
 export default GlobalStyle

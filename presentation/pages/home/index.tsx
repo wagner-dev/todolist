@@ -3,11 +3,11 @@ import {
   Wrapped,
   Title
 } from './styles'
-import { SearchBar, ErrorMessage } from '../../components/index'
+import { SearchBar, ErrorMessage, TodolistHistory } from '../../components/index'
 
 export interface Todolist {
   message: string,
-  createdAt: Date,
+  createdAt: Date | string,
   isCompleted: boolean
 }
 export interface Todolists {
@@ -22,7 +22,23 @@ export interface Error {
 const Home: FC = () => {
   const [todolists, setTodolists] = useState<Todolists>({
     total: 0,
-    todolists: []
+    todolists: [
+      {
+        message: 'Eu consegui fazer isso',
+        createdAt: '03/12/2004',
+        isCompleted: false
+      },
+      {
+        message: 'Espera, quase deu certo',
+        createdAt: '04/12/2004',
+        isCompleted: false
+      },
+      {
+        message: 'Caralho, menó. Deu certooo. Uhuuuuuu',
+        createdAt: '05/12/2004',
+        isCompleted: false
+      }
+    ]
   })
   const [error, setError] = useState<Error>({
     visible: false,
@@ -52,7 +68,12 @@ const Home: FC = () => {
        ThrowError={ThrowError}
        DisableError={DisableError}
       />
-      <ErrorMessage error={error} />
+      <ErrorMessage
+       error={error}
+      />
+      <TodolistHistory
+       todolists={todolists}
+      />
     </Wrapped>
   )
 }

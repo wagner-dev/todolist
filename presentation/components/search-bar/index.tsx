@@ -7,12 +7,10 @@ import {
   IconPlus
 } from './styles'
 import { MakeTodolistValidation } from '../../../main/factories/validation/todolist-validation-factory'
-import { DEFAULT_THEME } from '../../../main/config/index'
-import LightPlusSvg from '../../assets/light-plus-icon.svg'
-import DarkPlusSvg from '../../assets/dark-plus-icon.svg'
+import { useTheme } from '../../styles/store/theme-context'
+import DarkPlusSvg from '../../assets/plus-icon/dark-plus-icon.svg'
+import LightPlusSvg from '../../assets/plus-icon/light-plus-icon.svg'
 import { format } from 'date-fns'
-
-const INITIAL_PLUS_ICON = DEFAULT_THEME === 'dark' ? DarkPlusSvg : LightPlusSvg
 
 interface Props {
   CreateTodolist: (todolist: any) => void
@@ -34,6 +32,10 @@ const GetTime = () => {
 }
 
 const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError }) => {
+  const { theme } = useTheme()
+
+  const PlusIcon = theme.name === 'dark' ? LightPlusSvg : DarkPlusSvg
+
   const [currentTodolist, setCurrentTodolist] = useState<CurrentTodolist>({
     message: '',
     createdAt: null,
@@ -63,7 +65,7 @@ const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError }) => {
       />
       <Button onClick={ HandleToCreateTodolist } >
          <IconPlus>
-          <Image src={ INITIAL_PLUS_ICON } />
+          <Image src={ PlusIcon } />
          </IconPlus>
        </Button>
     </Wrapped>

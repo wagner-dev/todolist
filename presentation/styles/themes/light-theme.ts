@@ -1,6 +1,7 @@
 import fontSizes from '../font-sizes'
 
 const lightTheme = {
+  name: 'light',
   colors: {
     primary: '#00B0FF',
     boldPrimary: '#262626',

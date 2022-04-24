@@ -2,6 +2,7 @@ import { Theme } from '../protocols/theme'
 import fontSizes from './../font-sizes'
 
 const darkTheme: Theme = {
+  name: 'dark',
   colors: {
     primary: '#ffffff',
     boldPrimary: '#e4e6eb',
