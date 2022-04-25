@@ -7,6 +7,7 @@ const get = ({ context, name }: GetCookie) => {
 
   return (cookieValue || false)
 }
+
 const set = ({ context, name, value }: SetCookie) => {
   const cookiePersisted = setCookie(context, name, value)
 

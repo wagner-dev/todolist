@@ -6,7 +6,7 @@ const darkTheme: Theme = {
   colors: {
     primary: '#ffffff',
     boldPrimary: '#e4e6eb',
-    secondary: '#3a3b3c',
+    secondary: '#262626',
     title: '#e4e6eb',
     text: '#e4e6eb',
     background: '#18191a'

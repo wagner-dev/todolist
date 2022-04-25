@@ -1,15 +1,15 @@
 import { FC, useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import { Home } from '../presentation/pages/index'
-import { GetCookieThemeAdapter } from '../main/adapters/theme-cookie-adapter'
+import { GetCookieThemeAdapter, GetCookieTodolistAdapter } from '../main/adapters/index'
 import { useTheme } from '../presentation/styles/store/theme-context'
 import { darkTheme, lightTheme } from '../presentation/styles/themes/index'
-import { MakeTodolistValidation } from '../main/factories/validation/todolist-validation-factory'
 
 interface Props {
-  theme: string
+  theme: string,
+  todolistsCookie: string
 }
-const HomePage: FC<Props> = ({ theme }) => {
+const HomePage: FC<Props> = ({ theme, todolistsCookie }) => {
   const { setTheme } = useTheme()
 
   const GetThemeStore = () => (
@@ -24,14 +24,21 @@ const HomePage: FC<Props> = ({ theme }) => {
   }, [])
 
   return (
-      <Home />
+      <Home
+       todolistsCookie={todolistsCookie}
+      />
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const theme = GetCookieThemeAdapter({ context })
+  const todolistsCookie = GetCookieTodolistAdapter({ context })
+
   return {
-    props: { theme }
+    props: {
+      theme,
+      todolistsCookie
+    }
   }
 }
 

@@ -1,10 +1,15 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import {
   Wrapped,
   Title
 } from './styles'
 import { SearchBar, ErrorMessage, TodolistHistory } from '../../components/index'
+import { SetCookieTodolistAdapter } from '../../../main/adapters/index'
+import { FormatJsonToString, FormatStringToJson } from '../../../services/index'
 
+interface Props {
+  todolistsCookie: any
+}
 export interface Todolist {
   message: string,
   createdAt: Date | string,
@@ -19,41 +24,48 @@ export interface Error {
   message: string
 }
 
-const Home: FC = () => {
+const Home: FC<Props> = ({ todolistsCookie }) => {
   const [todolists, setTodolists] = useState<Todolists>({
     total: 0,
-    todolists: [
-      {
-        message: 'Eu consegui fazer isso',
-        createdAt: '03/12/2004',
-        isCompleted: false
-      },
-      {
-        message: 'Espera, quase deu certo',
-        createdAt: '04/12/2004',
-        isCompleted: false
-      },
-      {
-        message: 'Caralho, menó. Deu certooo. Uhuuuuuu',
-        createdAt: '05/12/2004',
-        isCompleted: false
-      }
-    ]
+    todolists: []
   })
+
   const [error, setError] = useState<Error>({
     visible: false,
     message: ''
   })
 
-  const CreateTodolist = (currentTodolist: Todolist) => {
-    setTodolists(({ total, todolists }) => ({
-      total: (total + 1),
-      todolists: [...todolists, currentTodolist]
-    }))
+  const CheckTodolistCookieAndSet = (todolistCookie: string) => {
+    if (todolistCookie) {
+      const todolistJson = FormatStringToJson(todolistCookie)
+      setTodolists(todolistJson)
+    }
+    return false
   }
+
+  useEffect(() => {
+    CheckTodolistCookieAndSet(todolistsCookie)
+  }, [])
+
+  const PersistTodolistToCookie = (todolistJson: Todolists) => {
+    const todolistString = FormatJsonToString(todolistJson)
+    SetCookieTodolistAdapter({ value: todolistString })
+  }
+
+  const CreateTodolist = (currentTodolist: Todolist) => {
+    const currentTodolists = {
+      total: (todolists.total + 1),
+      todolists: [...todolists.todolists, currentTodolist]
+    }
+
+    setTodolists(currentTodolists)
+    PersistTodolistToCookie(currentTodolists)
+  }
+
   const DisableError = () => {
     setError({ visible: false, message: '' })
   }
+
   const ThrowError = (error: { message: string }) => {
     setError({ ...error, visible: true })
   }

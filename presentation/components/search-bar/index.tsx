@@ -7,10 +7,10 @@ import {
   IconPlus
 } from './styles'
 import { MakeTodolistValidation } from '../../../main/factories/validation/todolist-validation-factory'
+import { FormatDateToCustomDate } from '../../../services/index'
 import { useTheme } from '../../styles/store/theme-context'
 import DarkPlusSvg from '../../assets/plus-icon/dark-plus-icon.svg'
 import LightPlusSvg from '../../assets/plus-icon/light-plus-icon.svg'
-import { format } from 'date-fns'
 
 interface Props {
   CreateTodolist: (todolist: any) => void
@@ -24,13 +24,6 @@ interface CurrentTodolist {
   isCompleted: null | boolean
 }
 
-const GetTime = () => {
-  const currentTime = new Date()
-  const timeFormatted = format(currentTime, 'P') // dd/mm/yyyy
-
-  return timeFormatted
-}
-
 const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError }) => {
   const { theme } = useTheme()
 
@@ -42,18 +35,23 @@ const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError }) => {
     isCompleted: null
   })
 
+  const ClearLengthCurrentTodolist = () => {
+    setCurrentTodolist(previus => ({ ...previus, message: '' }))
+  }
+
   const HandleToCreateTodolist = async () => {
     try {
       DisableError()
       await MakeTodolistValidation(currentTodolist)
       CreateTodolist(currentTodolist)
+      ClearLengthCurrentTodolist()
     } catch (error) {
       ThrowError(error)
     }
   }
 
   const setTodolistInput = ({ target: { value: message } }: ChangeEvent<HTMLInputElement>) => {
-    const createdAt = GetTime()
+    const createdAt = FormatDateToCustomDate(new Date())
     setCurrentTodolist(previus => ({ ...previus, message, createdAt }))
   }
   return (
