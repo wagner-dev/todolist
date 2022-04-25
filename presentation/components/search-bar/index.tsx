@@ -16,15 +16,17 @@ interface Props {
   CreateTodolist: (todolist: any) => void
   ThrowError: (error: any) => void
   DisableError: () => void
+  idRef: number
 }
 
 interface CurrentTodolist {
   message: string,
   createdAt: Date | null | string,
-  isCompleted: null | boolean
+  isCompleted: null | boolean,
+  id: number
 }
 
-const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError }) => {
+const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError, idRef }) => {
   const { theme } = useTheme()
 
   const PlusIcon = theme.name === 'dark' ? LightPlusSvg : DarkPlusSvg
@@ -32,7 +34,8 @@ const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError }) => {
   const [currentTodolist, setCurrentTodolist] = useState<CurrentTodolist>({
     message: '',
     createdAt: null,
-    isCompleted: null
+    isCompleted: null,
+    id: 0
   })
 
   const ClearLengthCurrentTodolist = () => {
@@ -52,7 +55,8 @@ const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError }) => {
 
   const setTodolistInput = ({ target: { value: message } }: ChangeEvent<HTMLInputElement>) => {
     const createdAt = FormatDateToCustomDate(new Date())
-    setCurrentTodolist(previus => ({ ...previus, message, createdAt }))
+    const id = idRef
+    setCurrentTodolist(previus => ({ ...previus, message, createdAt, id }))
   }
   return (
     <Wrapped>

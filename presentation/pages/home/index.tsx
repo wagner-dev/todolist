@@ -14,10 +14,12 @@ export interface Todolist {
   message: string,
   createdAt: Date | string,
   isCompleted: boolean
+  id: number
 }
 export interface Todolists {
   total: number,
-  todolists: Todolist[]
+  todolists: Todolist[],
+  idRef: number
 }
 export interface Error {
   visible: boolean,
@@ -27,7 +29,8 @@ export interface Error {
 const Home: FC<Props> = ({ todolistsCookie }) => {
   const [todolists, setTodolists] = useState<Todolists>({
     total: 0,
-    todolists: []
+    todolists: [],
+    idRef: 0
   })
 
   const [error, setError] = useState<Error>({
@@ -55,9 +58,21 @@ const Home: FC<Props> = ({ todolistsCookie }) => {
   const CreateTodolist = (currentTodolist: Todolist) => {
     const currentTodolists = {
       total: (todolists.total + 1),
+      idRef: (todolists.idRef + 1),
       todolists: [...todolists.todolists, currentTodolist]
     }
 
+    setTodolists(currentTodolists)
+    PersistTodolistToCookie(currentTodolists)
+  }
+
+  const RemoveTodolist = ({ id }: Todolist) => {
+    const currentTodolist = todolists.todolists.filter(todolist => todolist.id !== id)
+    const currentTodolists = {
+      total: (todolists.total - 1),
+      idRef: (todolists.idRef),
+      todolists: currentTodolist
+    }
     setTodolists(currentTodolists)
     PersistTodolistToCookie(currentTodolists)
   }
@@ -79,12 +94,15 @@ const Home: FC<Props> = ({ todolistsCookie }) => {
        CreateTodolist={CreateTodolist}
        ThrowError={ThrowError}
        DisableError={DisableError}
+       idRef={todolists.idRef}
       />
       <ErrorMessage
        error={error}
       />
       <TodolistHistory
        todolists={todolists}
+       RemoveTodolist={RemoveTodolist}
+       ChangeTodolistConfirmation={ChangeTodolistConfirmation}
       />
     </Wrapped>
   )
