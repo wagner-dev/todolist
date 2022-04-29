@@ -1,4 +1,5 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, useCallback } from 'react'
+import { get, set } from 'lodash'
 import {
   Wrapped,
   Title
@@ -27,6 +28,9 @@ export interface Error {
 }
 
 const Home: FC<Props> = ({ todolistsCookie }) => {
+  const [_, setRender] = useState({ render: 0 })
+  const forceRender = useCallback(() => setRender((previus) => ({ render: previus.render + 1 })), [])
+
   const [todolists, setTodolists] = useState<Todolists>({
     total: 0,
     todolists: [],
@@ -55,26 +59,38 @@ const Home: FC<Props> = ({ todolistsCookie }) => {
     SetCookieTodolistAdapter({ value: todolistString })
   }
 
+  const SetAndPersistTodolist = (todolists: Todolists) => {
+    setTodolists(todolists)
+    PersistTodolistToCookie(todolists)
+  }
+
   const CreateTodolist = (currentTodolist: Todolist) => {
-    const currentTodolists = {
+    const newTodolists = {
       total: (todolists.total + 1),
       idRef: (todolists.idRef + 1),
       todolists: [...todolists.todolists, currentTodolist]
     }
-
-    setTodolists(currentTodolists)
-    PersistTodolistToCookie(currentTodolists)
+    SetAndPersistTodolist(newTodolists)
   }
 
   const RemoveTodolist = ({ id }: Todolist) => {
-    const currentTodolist = todolists.todolists.filter(todolist => todolist.id !== id)
-    const currentTodolists = {
+    const newTodolist = todolists.todolists.filter(todolist => todolist.id !== id)
+    const newTodolists = {
       total: (todolists.total - 1),
       idRef: (todolists.idRef),
-      todolists: currentTodolist
+      todolists: newTodolist
     }
-    setTodolists(currentTodolists)
-    PersistTodolistToCookie(currentTodolists)
+    SetAndPersistTodolist(newTodolists)
+  }
+
+  const ChangeTodolistConfirmation = (_: Todolist, index: number) => {
+    const PATH = `todolists[${index}].isCompleted`
+    const todolistIsCompleted = get(todolists, PATH)
+    const newValue = !todolistIsCompleted
+    const newTodolists = set(todolists, PATH, newValue)
+
+    SetAndPersistTodolist(newTodolists)
+    forceRender()
   }
 
   const DisableError = () => {
@@ -91,10 +107,10 @@ const Home: FC<Props> = ({ todolistsCookie }) => {
         <h1>Todolist</h1>
       </Title>
       <SearchBar
-       CreateTodolist={CreateTodolist}
+       idRef={todolists.idRef}
        ThrowError={ThrowError}
        DisableError={DisableError}
-       idRef={todolists.idRef}
+       CreateTodolist={CreateTodolist}
       />
       <ErrorMessage
        error={error}

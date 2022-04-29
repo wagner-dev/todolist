@@ -16,35 +16,36 @@ import { useTheme } from '../../styles/store/theme-context'
 
 interface TodolistIndexProps {
   todolist: Todolist
+  index: number
   RemoveTodolist: (todolist: Todolist) => void
-  ChangeTodolistConfirmation: (todolist: Todolist) => void
+  ChangeTodolistConfirmation: (todolist: Todolist, index: number) => void
 }
 
 interface FlatListTodolistProps {
   todolists: Todolists
   RemoveTodolist: (todolist: Todolist) => void
-  ChangeTodolistConfirmation: (todolist: Todolist) => void
+  ChangeTodolistConfirmation: (todolist: Todolist, index: number) => void
 }
 
 interface Props {
   todolists: Todolists
   RemoveTodolist: (todolist: Todolist) => void
-  ChangeTodolistConfirmation: (todolist: Todolist) => void
+  ChangeTodolistConfirmation: (todolist: Todolist, index: number) => void
 }
 
-const TodolistIndex = ({ todolist, RemoveTodolist, ChangeTodolistConfirmation }: TodolistIndexProps) => {
+const TodolistIndex = ({ todolist, RemoveTodolist, ChangeTodolistConfirmation, index }: TodolistIndexProps) => {
   const { theme } = useTheme()
 
   const ConfirmIcon = theme.name === 'dark' ? ConfirmIconLight : ConfirmIconDark
   const CloseIcon = theme.name === 'dark' ? CloseIconLight : CloseIconDark
 
   return (
-  <TodolistWrapped>
+  <TodolistWrapped isCompleted={ todolist.isCompleted }>
     <TodolistMessage>
       { todolist.message }
     </TodolistMessage>
     <TodolistActions>
-      <TodolistAction onClick={ () => ChangeTodolistConfirmation(todolist) }>
+      <TodolistAction onClick={ () => ChangeTodolistConfirmation(todolist, index) }>
         <Image
          width={30}
          height={30}
@@ -76,10 +77,11 @@ const FlatListTodolist = (
       {
         todolists.map((todolist, index) => (
           <TodolistIndex
-           key={index}
-           todolist={todolist}
-           RemoveTodolist={RemoveTodolist}
-           ChangeTodolistConfirmation={ChangeTodolistConfirmation}
+           key={ index }
+           index={ index }
+           todolist={ todolist }
+           RemoveTodolist={ RemoveTodolist }
+           ChangeTodolistConfirmation={ ChangeTodolistConfirmation }
           />)
         )
       }

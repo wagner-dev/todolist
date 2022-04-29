@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+interface Todolist {
+  isCompleted: boolean
+}
+
 export const Wrapped = styled.div`
   width: 50%;
   margin-top: 1.5rem;
@@ -10,6 +14,7 @@ export const TodolistWrapped = styled.div`
   margin: .2rem 0rem;
   padding: 1.3rem .8rem;
   background: ${({ theme: { colors: { secondary } } }) => secondary};
+  opacity: ${({ isCompleted }: Todolist) => isCompleted ? '0.6' : '1'};
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
