@@ -36,8 +36,9 @@
     "**/*.ts",
     "**/*.tsx",
     "types.d.ts",
-    "prettier.config.js"
-, "services/format-json-to-stringts"  ],
+    "prettier.config.js",
+    "services/format-json-to-stringts"
+  ],
   "exclude": [
     "node_modules"
   ]

@@ -4,7 +4,7 @@ import {
   Wrapped,
   Title
 } from './styles'
-import { SearchBar, ErrorMessage, TodolistHistory } from '../../components/index'
+import { SearchBar, ErrorMessage, TodolistHistory, SwitchTheme } from '../../components/index'
 import { SetCookieTodolistAdapter } from '../../../main/adapters/index'
 import { FormatJsonToString, FormatStringToJson } from '../../../services/index'
 
@@ -103,6 +103,7 @@ const Home: FC<Props> = ({ todolistsCookie }) => {
 
   return (
     <Wrapped>
+      <SwitchTheme />
       <Title>
         <h1>Todolist</h1>
       </Title>

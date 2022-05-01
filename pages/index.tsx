@@ -13,7 +13,7 @@ const HomePage: FC<Props> = ({ theme, todolistsCookie }) => {
   const { setTheme } = useTheme()
 
   const GetThemeStore = () => (
-    theme === 'dark'
+    theme === 'DARK'
       ? darkTheme
       : lightTheme
   )
