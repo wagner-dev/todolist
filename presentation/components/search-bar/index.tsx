@@ -27,7 +27,7 @@ interface CurrentTodolist {
 }
 
 const SearchBar: FC<Props> = ({ CreateTodolist, ThrowError, DisableError, idRef }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme()!
 
   const PlusIcon = theme.name === 'dark' ? LightPlusSvg : DarkPlusSvg
 

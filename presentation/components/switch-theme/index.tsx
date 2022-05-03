@@ -9,7 +9,7 @@ import { SetCookieThemeAdapter } from '../../../main/adapters/index'
 import { darkTheme, lightTheme } from '../../styles/themes/index'
 
 const SwitchTheme: FC = () => {
-  const { setTheme } = useTheme()
+  const { setTheme } = useTheme()!
 
   const SetThemeInStoreAndCookie = (themeName: string) => {
     const themeStore = themeName === 'DARK'

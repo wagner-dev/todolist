@@ -1,6 +1,10 @@
 import { ValidateFieldParams } from '../protocols/index'
 
-const assertIsError = (errors: unknown) => {
+interface ValidateFieldError {
+  errors: string[]
+}
+
+const assertIsError = (errors: any) => {
   if (!(errors instanceof Error)) {
     const error = { message: errors[0] }
     throw error
@@ -11,7 +15,8 @@ const ValidateField = async ({ schema, value }: ValidateFieldParams) => {
   try {
     const validated = await schema.validate(value)
     return validated
-  } catch ({ errors }) {
+  } catch (errorsData) {
+    const { errors } = errorsData as ValidateFieldError
     assertIsError(errors)
 
     const errorMessage = errors[0]

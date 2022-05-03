@@ -14,6 +14,6 @@ export interface FontSizes {
 }
 export interface Theme {
   name: string
-  colors?: Colors
-  fontSizes?: FontSizes
+  colors: Colors
+  fontSizes: FontSizes
 }

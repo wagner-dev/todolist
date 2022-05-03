@@ -10,7 +10,7 @@ interface Props {
   todolistsCookie: string
 }
 const HomePage: FC<Props> = ({ theme, todolistsCookie }) => {
-  const { setTheme } = useTheme()
+  const { setTheme } = useTheme()!
 
   const GetThemeStore = () => (
     theme === 'DARK'

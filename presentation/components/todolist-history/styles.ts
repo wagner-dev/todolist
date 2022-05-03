@@ -9,6 +9,10 @@ export const Wrapped = styled.div`
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (max-width: 720px){
+    width: 95%;
+  }
 `
 export const TodolistWrapped = styled.div`
   margin: .2rem 0rem;
@@ -19,7 +23,7 @@ export const TodolistWrapped = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+  `
 export const TodolistMessage = styled.span`
 
 `
@@ -36,4 +40,13 @@ export const TodolistAction = styled.div`
     border: 1px solid ${({ theme: { colors: { boldPrimary } } }) => boldPrimary};
     cursor: pointer;
   }
-`
+  `
+
+export const EmptyMessageWrapped = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 0rem;
+  border-radius: 8px;
+  background: ${({ theme: { colors: { secondary } } }) => secondary};
+  `

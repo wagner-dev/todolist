@@ -12,6 +12,10 @@ export const Wrapped = styled.div`
   display: flex;
   justify-content: flex-end;
 
+  @media only screen and (max-width: 720px){
+    justify-content: center;
+  }
+
   `
 export const WrappedThemes = styled.div`
   display: flex;

@@ -11,10 +11,10 @@ import defaultTheme from '../themes/dark-theme'
 import { Theme } from '../protocols/theme'
 
 interface ThemeContextI {
-  theme?: Theme
-  setTheme?: Dispatch<SetStateAction<Theme>>
+  theme: Theme
+  setTheme: Dispatch<SetStateAction<Theme>>
 }
-const ThemeContext = createContext<ThemeContextI>({})
+const ThemeContext = createContext<ThemeContextI>({ theme: defaultTheme, setTheme: () => {} })
 
 const ThemeProvider: FC = ({ children }) => {
   const [theme, setTheme] = useState(defaultTheme)

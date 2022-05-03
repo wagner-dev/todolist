@@ -1,4 +1,2 @@
-import { GetCookieTheme } from './get-cookie-theme'
-import { SetCookieTheme } from './set-cookie-theme'
-
-export { GetCookieTheme, SetCookieTheme }
+export type { GetCookieTheme } from './get-cookie-theme'
+export type { SetCookieTheme } from './set-cookie-theme'

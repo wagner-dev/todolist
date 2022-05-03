@@ -7,6 +7,10 @@ export const Wrapped = styled.div`
   justify-content: space-around;
   background: ${({ theme: { colors: { secondary } } }) => secondary};
   border-radius: 8px;
+
+  @media only screen and (max-width: 720px){
+    width: 95%;
+  }
   `
 export const Bar = styled.input`
   background: none;

@@ -6,7 +6,8 @@ import {
   TodolistWrapped,
   TodolistMessage,
   TodolistActions,
-  TodolistAction
+  TodolistAction,
+  EmptyMessageWrapped
 } from './styles'
 import ConfirmIconDark from '../../assets/confirm-icon/dark-confirm-icon.svg'
 import ConfirmIconLight from '../../assets/confirm-icon/light-confirm-icon.svg'
@@ -34,7 +35,7 @@ interface Props {
 }
 
 const TodolistIndex = ({ todolist, RemoveTodolist, ChangeTodolistConfirmation, index }: TodolistIndexProps) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme()!
 
   const ConfirmIcon = theme.name === 'dark' ? ConfirmIconLight : ConfirmIconDark
   const CloseIcon = theme.name === 'dark' ? CloseIconLight : CloseIconDark
@@ -67,23 +68,36 @@ const TodolistIndex = ({ todolist, RemoveTodolist, ChangeTodolistConfirmation, i
 const FlatListTodolist = (
   {
     todolists: {
-      todolists
+      todolists,
+      total
     },
     RemoveTodolist,
     ChangeTodolistConfirmation
   }: FlatListTodolistProps) => {
+  const FlatList = () => (
+    todolists.map((todolist, index) => (
+        <TodolistIndex
+         key={ index }
+         index={ index }
+         todolist={ todolist }
+         RemoveTodolist={ RemoveTodolist }
+         ChangeTodolistConfirmation={ ChangeTodolistConfirmation }
+        />)
+    )
+  )
+
+  const EmptyMessage = () => (
+    <EmptyMessageWrapped>
+      <span> Nenhum todolist registrado </span>
+    </EmptyMessageWrapped>
+  )
+
   return (
     <>
       {
-        todolists.map((todolist, index) => (
-          <TodolistIndex
-           key={ index }
-           index={ index }
-           todolist={ todolist }
-           RemoveTodolist={ RemoveTodolist }
-           ChangeTodolistConfirmation={ ChangeTodolistConfirmation }
-          />)
-        )
+        total
+          ? FlatList()
+          : <EmptyMessage />
       }
     </>
   )
