@@ -7,7 +7,7 @@ import {
   IconPlus
 } from './styles'
 import { MakeTodolistValidation } from '../../../main/factories/validation/todolist-validation-factory'
-import { FormatDateToCustomDate } from '../../../services/index'
+import { FormatDateToCustomDate } from '../../../infra/services/index'
 import { useTheme } from '../../styles/store/theme-context'
 import DarkPlusSvg from '../../assets/plus-icon/dark-plus-icon.svg'
 import LightPlusSvg from '../../assets/plus-icon/light-plus-icon.svg'

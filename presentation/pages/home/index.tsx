@@ -6,7 +6,7 @@ import {
 } from './styles'
 import { SearchBar, ErrorMessage, TodolistHistory, SwitchTheme } from '../../components/index'
 import { SetCookieTodolistAdapter } from '../../../main/adapters/index'
-import { FormatJsonToString, FormatStringToJson } from '../../../services/index'
+import { FormatJsonToString, FormatStringToJson } from '../../../infra/services/index'
 
 interface Props {
   todolistsCookie: any

@@ -8,7 +8,7 @@ import {
 import {
   TODOLIST_MIN_VALIDATION,
   TODOLIST_MAX_VALIDATION
-} from '../../config/index'
+} from '../../constants/index'
 
 const MakeTodolistValidation = (value: any) => {
   const schema = object({

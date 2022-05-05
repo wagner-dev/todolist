@@ -1,4 +1,4 @@
-import { TODOLIST_MAX_VALIDATION } from '../../main/config/index'
+import { TODOLIST_MAX_VALIDATION } from '../../main/constants/index'
 
 const LargeTodolistError = {
   name: 'large-todolist-error',

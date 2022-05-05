@@ -1,5 +1,5 @@
-import { MakeTodolistValidation } from './todolist-validation-factory'
-import { LargeTodolistError, RequiredTodolistError } from '../../../validation/errors/index'
+import { MakeTodolistValidation } from '../../main/factories/validation/todolist-validation-factory'
+import { LargeTodolistError, RequiredTodolistError } from '../../validation/errors/index'
 
 describe('Todolist validation', () => {
   it('Should return an error message if the todolist field is not filled', async () => {
