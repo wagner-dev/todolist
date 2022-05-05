@@ -4,7 +4,7 @@ import {
   WrappedThemes,
   CircleTheme
 } from './styles'
-import { useTheme } from '../../styles/store/theme-context'
+import { useTheme } from '../../contexts/theme-store'
 import { SetCookieThemeAdapter } from '../../../main/adapters/index'
 import { darkTheme, lightTheme } from '../../styles/themes/index'
 

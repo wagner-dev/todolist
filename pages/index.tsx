@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import { Home } from '../presentation/pages/index'
 import { GetCookieThemeAdapter, GetCookieTodolistAdapter } from '../main/adapters/index'
-import { useTheme } from '../presentation/styles/store/theme-context'
+import { useTheme } from '../presentation/contexts/theme-store'
 import { darkTheme, lightTheme } from '../presentation/styles/themes/index'
 
 interface Props {

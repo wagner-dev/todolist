@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import type { AppProps } from 'next/app'
 import GlobalStyle from '../presentation/styles/globals'
-import ThemeProvider from '../presentation/styles/store/theme-provider'
-import StoreThemeProvider from '../presentation/styles/store/theme-context'
+import ThemeProvider from '../presentation/contexts/theme-provider'
+import StoreThemeProvider from '../presentation/contexts/theme-store'
 
 const ThemeWrapped: FC = ({ children }) => (
   <StoreThemeProvider>

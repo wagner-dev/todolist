@@ -7,8 +7,8 @@ import {
   SetStateAction
 } from 'react'
 
-import defaultTheme from '../themes/dark-theme'
-import { Theme } from '../protocols/theme'
+import defaultTheme from '../styles/themes/dark-theme'
+import { Theme } from '../styles/protocols/theme'
 
 interface ThemeContextI {
   theme: Theme

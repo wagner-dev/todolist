@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { useTheme } from './theme-context'
+import { useTheme } from './theme-store'
 
 const ThemeComponent: FC = ({ children }) => {
   const { theme } = useTheme()!

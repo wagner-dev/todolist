@@ -13,7 +13,7 @@ import ConfirmIconDark from '../../assets/confirm-icon/dark-confirm-icon.svg'
 import ConfirmIconLight from '../../assets/confirm-icon/light-confirm-icon.svg'
 import CloseIconLight from '../../assets/close-icon/light-close-icon.svg'
 import CloseIconDark from '../../assets/close-icon/dark-close-icon.svg'
-import { useTheme } from '../../styles/store/theme-context'
+import { useTheme } from '../../contexts/theme-store'
 
 interface TodolistIndexProps {
   todolist: Todolist
